@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    width: auto;
+    height: 70px;
+    background-color: #1A5276;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: 25px;
+    margin-top: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 70px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'BPG Algeti';
+
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.add_form{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.add_form input{
+    width: 40%;
+    height: 60px;
+    padding-left: 10px;
+    font-size: 17px;
+    margin-top: 10px;
+    font-family: 'BPG Algeti';
+
+}
+
+.add_form button{
+    width: 40%;
+    height: 50px;
+    font-size: 17px;
+    margin-top: 10px;
+    font-family: 'BPG Algeti';
+    outline: none;
+    border: none;
+    background-color: #001f3f;
+    color: white;
+}

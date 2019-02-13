@@ -1,0 +1,105 @@
+body{
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login_form{
+    padding-top: 5%;
+    margin: auto;
+    width: 600px;
+    height: 350px;
+    background-color: #001f3f;
+    text-align: center;
+    margin-top: 5%;
+
+}
+
+.login_form input{
+    width: 70%;
+    height: 60px;
+    margin-top: 10px;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    font-family: 'BPG Algeti';
+
+}
+
+.login_form button{
+    width: 70%;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    background-color: #1F618D;
+    color: white;
+    font-family: 'BPG Algeti';
+
+}
+
+.login_form a{
+    color: white;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'BPG Algeti';
+}
+
+.register_form{
+    padding-top: 5%;
+    margin: auto;
+    width: 600px;
+    height: 370px;
+    background-color: #001f3f;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.register_form input{
+    width: 70%;
+    height: 60px;
+    margin-top: 10px;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    font-family: 'BPG Algeti';
+
+}
+
+.register_form button{
+    width: 70%;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 17px;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    background-color: #1F618D;
+    color: white;
+    font-family: 'BPG Algeti';
+
+}
+
+.register_form a{
+    color: white;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: 'BPG Algeti';
+}
+
+
+.error{
+    color: red;
+    font-size: 19px;
+    margin-top: 20px;
+    font-family: 'BPG Algeti';
+
+}
