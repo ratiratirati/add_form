@@ -20,6 +20,9 @@ include ('proces.php');
         <button name="register">რეგისტრაცია</button>
         <br>
         <a href="index.php">შესვლა</a>
+        <div class="msg">
+            <?php echo $msg;?>
+        </div>
         <div class="error">
             <?php include ('error.php');?>
         </div>

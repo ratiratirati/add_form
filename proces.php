@@ -1,43 +1,31 @@
 <?php
 
-function get_ip_address() {
-    // check for shared internet/ISP IP
-    if (!empty($_SERVER['HTTP_CLIENT_IP']) && validate_ip($_SERVER['HTTP_CLIENT_IP'])) {
-        return $_SERVER['HTTP_CLIENT_IP'];
-    }
-
-    // check for IPs passing through proxies
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        // check if multiple ips exist in var
-        if (strpos($_SERVER['HTTP_X_FORWARDED_FOR'], ',') !== false) {
-            $iplist = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            foreach ($iplist as $ip) {
-                if (validate_ip($ip))
-                    return $ip;
-            }
-        } else {
-            if (validate_ip($_SERVER['HTTP_X_FORWARDED_FOR']))
-                return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-    }
-    if (!empty($_SERVER['HTTP_X_FORWARDED']) && validate_ip($_SERVER['HTTP_X_FORWARDED']))
-        return $_SERVER['HTTP_X_FORWARDED'];
-    if (!empty($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']) && validate_ip($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']))
-        return $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
-    if (!empty($_SERVER['HTTP_FORWARDED_FOR']) && validate_ip($_SERVER['HTTP_FORWARDED_FOR']))
-        return $_SERVER['HTTP_FORWARDED_FOR'];
-    if (!empty($_SERVER['HTTP_FORWARDED']) && validate_ip($_SERVER['HTTP_FORWARDED']))
-        return $_SERVER['HTTP_FORWARDED'];
-
-    // return unreliable ip since all else failed
-    return $_SERVER['REMOTE_ADDR'];
+function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
 }
+
+$msg='';
 
 if(isset($_POST['register'])){
     $username = mysqli_real_escape_string($con,$_POST['username']);
     $password = mysqli_real_escape_string($con,$_POST['password']);
     $password_2 = $_POST['password_2'];
-    $ip = get_ip_address();
+    $ip = get_client_ip();
 
     if(empty($username)){
         array_push($errors,'<style>#err_1{border: 2px red dashed;}</style>');
@@ -68,16 +56,8 @@ if(isset($_POST['register'])){
     if(count($errors) == 0 ){
         $password = md5($password);
         $sql = "INSERT INTO users (ip,username,password) VALUES ('$ip','$username','$password')";
-        $result = mysqli_query($con,$sql);
-        if($result){
-            $row = mysqli_fetch_assoc($result);
-            $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $row['id'];
-            if($username == 'admin'){
-                header('location:admin.php');
-            }else{
-                header('location:home.php');
-            }
+        if(mysqli_query($con,$sql)){
+            $msg = "რეგისტრაცია წარმატებულია";
         }
     }
 

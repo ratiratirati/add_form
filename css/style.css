@@ -96,6 +96,13 @@ body{
 }
 
 
+.msg{
+    color: white;
+    margin-top: 10px;
+    font-size: 19px;
+    font-family: 'BPG Algeti';
+}
+
 .error{
     color: red;
     font-size: 19px;
